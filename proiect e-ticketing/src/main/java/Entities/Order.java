@@ -1,20 +1,21 @@
 package Entities;
 
+import java.time.LocalDate;
 import java.util.*;
 public class Order extends GenericEntity {
-    private Date orderDate;
+    private String orderDate;
 
 
     private int customerid;
 
     public Order(){}
-    public Order(int id, Date orderDate, int customerid) {
+    public Order(int id, String orderDate, int customerid) {
         super(id);
         this.orderDate = orderDate;
         this.customerid = customerid;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
@@ -22,7 +23,7 @@ public class Order extends GenericEntity {
         return customerid;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 

@@ -155,114 +155,11 @@ public class Service
         System.out.print("Type of the event: ");
         String type = reader.nextLine().toUpperCase();
 
-        System.out.print("StartDate \n");
-        System.out.print("Day: ");
-        int day;
-
-        while(true)
-        {
-            try
-            {
-                day = Integer.parseInt(reader.nextLine());
-                break;
-            }
-            catch (NumberFormatException e)
-            {
-                System.out.println("Expecting an integer value. Try again!");
-                System.out.print("Day: ");
-            }
-        }
-
-        System.out.print("Month: ");
-        int month;
-
-        while(true)
-        {
-            try
-            {
-                month = Integer.parseInt(reader.nextLine());
-                break;
-            }
-            catch (NumberFormatException e)
-            {
-                System.out.println("Expecting an integer value. Try again!");
-                System.out.print("Month: ");
-            }
-        }
-
-        System.out.print("Year: ");
-        int year;
-
-        while(true)
-        {
-            try
-            {
-                year = Integer.parseInt(reader.nextLine());
-                break;
-            }
-            catch (NumberFormatException e)
-            {
-                System.out.println("Expecting an integer value. Try again!");
-                System.out.print("Year: ");
-            }
-        }
-
-        Date startDate = new Date(year, month, day);
-        System.out.print("EndDate \n");
-        System.out.print("Day: ");
-        int day1;
-
-        while(true)
-        {
-            try
-            {
-                day1 = Integer.parseInt(reader.nextLine());
-                break;
-            }
-            catch (NumberFormatException e)
-            {
-                System.out.println("Expecting an integer value. Try again!");
-                System.out.print("Day: ");
-            }
-        }
-
-        System.out.print("Month: ");
-        int month1;
-
-        while(true)
-        {
-            try
-            {
-                month1 = Integer.parseInt(reader.nextLine());
-                break;
-            }
-            catch (NumberFormatException e)
-            {
-                System.out.println("Expecting an integer value. Try again!");
-                System.out.print("Month: ");
-            }
-        }
-
-        System.out.print("Year: ");
-        int year1;
-
-        while(true)
-        {
-            try
-            {
-                year1 = Integer.parseInt(reader.nextLine());
-                break;
-            }
-            catch (NumberFormatException e)
-            {
-                System.out.println("Expecting an integer value. Try again!");
-                System.out.print("Year: ");
-            }
-        }
-
-        Date endDate = new Date(year1, month1, day1);
-
-
+        System.out.print("StartDate: ");
+        String startDate = reader.nextLine();
+        ;
+        System.out.print("EndDate: ");
+        String endDate = reader.nextLine();
 
         events.add(new Event(id, name, type, startDate, endDate));
         eventRepository.addEvent(id, name, type, startDate, endDate);
@@ -339,7 +236,7 @@ public class Service
             System.out.print("Phone number: ");
             phone = reader.nextLine();
 
-            if (!email.matches("[0-9]+")) System.out.println("Not a valid phone number! Try again!");
+            if (!phone.matches("[0-9]+")) System.out.println("Not a valid phone number! Try again!");
             else break;
         }
 
@@ -694,7 +591,8 @@ public class Service
                 System.out.print("Order ID: ");
             }
         }
-        Date orderDate = Date.from(Instant.from(LocalDate.now()));
+        System.out.print("Order Date: ");
+        String orderDate = reader.nextLine().toUpperCase();
 
         boolean check = true;
         int customerid = 0;

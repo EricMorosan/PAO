@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -27,8 +28,8 @@ public class EventRepository
                 "(id int PRIMARY KEY, " +
                 "Name varchar(40), " +
                 "type varchar(40), " +
-                "startDate date, " +
-                "endDate date) ";
+                "startDate varchar(40), " +
+                "endDate varchar(40)) ";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
 
@@ -69,10 +70,10 @@ public class EventRepository
         }
     }
 
-    public void addEvent(int id, String Name, String type, Date starDate, Date endDate)
+    public void addEvent(int id, String Name, String type, String startDate, String endDate)
     {
         String insertAddressSql = "INSERT INTO EVENT(id, Name, type, startDate, endDate) VALUES("
-                + id + ", \"" + Name + "\", " + type + "\", " + starDate + "\", " + endDate + ");";
+                + id + ", \"" + Name + "\", \"" + type + "\", \"" + startDate + "\", \"" + endDate + "\");";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
 

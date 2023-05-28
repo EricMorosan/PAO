@@ -71,7 +71,7 @@ public class CustomerRepository
     public void addCustomer(int id, String firstName, String lastName, String email, String phone, String type, int addressid)
     {
         String insertAddressSql = "INSERT INTO CUSTOMER(id, firstName, lastName, email, phone, type, addressid) VALUES("
-                + id + "\", " + firstName + "\", " + lastName + "\", " + email + "\", " + phone + "\", " + type + "\", " + addressid + ");";
+                + id + ", \"" + firstName + "\", \"" + lastName + "\", \"" + email + "\", \"" + phone + "\", \"" + type + "\", " + addressid + ");";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
 

@@ -71,8 +71,8 @@ public class AddressRepository
 
     public void addAddress(int id, String street, int number, String zipCode, String town, String country)
     {
-        String insertAddressSql = "INSERT INTO ADDRESS(id, street, number, zipcode, town, country) VALUES("
-                + id + ",\"" + street + "\", \"" + number + ",\"" + zipCode + "\", \"" + town + "\", \"" + country + "\"" + ");";
+        String insertAddressSql = "INSERT INTO ADDRESS(id, street, number, zipcode, town, country)VALUES("
+                + id + ",\"" + street + "\", \"" + number + "\", \"" + zipCode + "\", \"" + town + "\", \"" + country + "\"" + ");";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
 

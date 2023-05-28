@@ -25,7 +25,7 @@ public class OrderRepository
     {
         String createTableSql = "CREATE TABLE IF NOT EXISTS `ORDER` " +
                 "(id int PRIMARY KEY, " +
-                "orderDate date, " +
+                "orderDate varchar(40), " +
                 "customerid int) ";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
@@ -67,9 +67,9 @@ public class OrderRepository
         }
     }
 
-    public void addOrder(int id, Date orderDate, int customerid)
+    public void addOrder(int id, String orderDate, int customerid)
     {
-        String insertAddressSql = "INSERT INTO ORDER(id, orderDate, customerid) VALUES("
+        String insertAddressSql = "INSERT INTO `ORDER`(id, orderDate, customerid) VALUES("
                 + id + ", \""  + orderDate + "\", " + customerid + ");";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();

@@ -1,15 +1,16 @@
 package Entities;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Event extends GenericEntity {
     private String Name;
     private String type;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
 
     public Event(){}
-    public Event(int id, String name, String type, Date startDate, Date endDate) {
+    public Event(int id, String name, String type, String startDate, String endDate) {
         super(id);
         this.Name = name;
         this.type = type;
@@ -25,11 +26,11 @@ public class Event extends GenericEntity {
         return type;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
@@ -41,11 +42,11 @@ public class Event extends GenericEntity {
         this.type = type;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 

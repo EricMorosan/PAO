@@ -70,7 +70,7 @@ public class OrderTicketRepository
     public void addOrderTicket(int id, int quantity, int orderid, int ticketid)
     {
         String insertAddressSql = "INSERT INTO ORDERTICKET(id, quantity, orderid, ticketid) VALUES("
-                + id + ", \"" + quantity + "\", " + orderid + "\", " + ticketid + ");";
+                + id + ", \"" + quantity + "\", \"" + orderid + "\", " + ticketid + ");";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
 
