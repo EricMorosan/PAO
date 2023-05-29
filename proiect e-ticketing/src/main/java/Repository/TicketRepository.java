@@ -69,7 +69,7 @@ public class TicketRepository
 
     public void addTicket(int id, String description, int price, int eventid)
     {
-        String insertAddressSql = "INSERT INTO ADDRESS(id, description, price, eventid) VALUES("
+        String insertAddressSql = "INSERT INTO TICKET(id, description, price, eventid) VALUES("
                 + id + ", \"" + description + "\", " + price + ", " + eventid + ");";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();

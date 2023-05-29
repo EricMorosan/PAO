@@ -70,7 +70,7 @@ public class VenueRepository
 
     public void addVenue(int id, String name, String type, int capacity, int addressid)
     {
-        String insertAddressSql = "INSERT INTO ADDRESS(id, name, type, capacity, addressid) VALUES("
+        String insertAddressSql = "INSERT INTO VENUE(id, name, type, capacity, addressid) VALUES("
                 + id + ", \"" + name + "\", \"" + type + "\", " + capacity + ", " + addressid + ");";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
