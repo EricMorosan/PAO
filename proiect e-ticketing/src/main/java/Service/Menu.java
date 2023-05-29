@@ -12,7 +12,9 @@ public class Menu
     // private constructor
     private Menu()
     {
+
         serviciu.configureTables();
+        serviciu.loadData();
     }
 
     private void showMenu()

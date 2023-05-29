@@ -7,8 +7,6 @@ import Entities.*;
 import Repository.*;
 
 import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.*;
 
 public class Service
@@ -30,7 +28,25 @@ public class Service
     VenueRepository venueRepository = VenueRepository.getInstance();
     AuditService auditService = AuditService.getInstance();
 
+    public void loadData()
+    {
+        // salveaza din CSV in liste de obiecte
+        addresses = ReadWrite.readAddress();
+        customers = ReadWrite.readCustomer();
+        events = ReadWrite.readEvent();
+        orders = ReadWrite.readOrder();
+        tickets = ReadWrite.readTicket();
 
+
+        try
+        {
+            auditService.logAction("load data");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
     public void configureTables()
     {
         addressRepository.createTable();
@@ -102,6 +118,7 @@ public class Service
         String country = reader.nextLine().toUpperCase();
 
         addresses.add(new Address(id, street, number, zipCode, town, country));
+        ReadWrite.writeAddress(id, street, number, zipCode, town, country);
         addressRepository.addAddress(id, street, number, zipCode, town, country);
 
         try
@@ -132,7 +149,7 @@ public class Service
     {
         Scanner reader = new Scanner(System.in);
 
-        System.out.print("Address ID: ");
+        System.out.print("Event ID: ");
         int id;
 
         while(true)
@@ -145,7 +162,7 @@ public class Service
             catch (NumberFormatException e)
             {
                 System.out.println("Expecting an integer value. Try again!");
-                System.out.print("Address ID: ");
+                System.out.print("Event ID: ");
             }
         }
 
@@ -157,11 +174,12 @@ public class Service
 
         System.out.print("StartDate: ");
         String startDate = reader.nextLine();
-        ;
+
         System.out.print("EndDate: ");
         String endDate = reader.nextLine();
 
         events.add(new Event(id, name, type, startDate, endDate));
+        ReadWrite.writeEvent(id, name, type, startDate, endDate);
         eventRepository.addEvent(id, name, type, startDate, endDate);
 
         try
@@ -267,10 +285,15 @@ public class Service
             }
 
             if (check) {
-                System.out.println("Address doesn't exist. Try again!");
+                System.out.print("Address doesn't exist. Try again! Possible IDs are ");
+                for (Address a : addresses){
+                    System.out.print(a.getId()+ " ");
+                }
+                System.out.println();
             }
         }
         customers.add(new Customer(id, firstName, lastName, email, phone, type, addressid));
+        ReadWrite.writeCustomer(id, firstName, lastName, email, phone, type, addressid);
         customerRepository.addCustomer(id, firstName, lastName, email, phone, type, addressid);
     }
 
@@ -447,6 +470,7 @@ public class Service
         }
 
         tickets.add(new Ticket(id, description, price, eventid));
+        ReadWrite.writeTicket(id, description, price, eventid);
         ticketRepository.addTicket(id, description, price, eventid);
 
         try
@@ -623,11 +647,70 @@ public class Service
 
 
         orders.add(new Order(id, orderDate, customerid));
+        ReadWrite.writeOrder(id, orderDate, customerid);
         orderRepository.addOrder(id, orderDate, customerid);
 
         try
         {
             auditService.logAction("add order");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+
+        check = true;
+        int ticketid = 0;
+        while (check) {
+            System.out.print("Ticket id: ");
+
+            while (true) {
+                try {
+                    ticketid = Integer.parseInt(reader.nextLine());
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Expecting an integer value. Try again!");
+                    System.out.print("Ticket id: ");
+                }
+            }
+
+            for (Ticket t : tickets) {
+                if (t.getId() == ticketid) {
+                    check = false;
+                    break;
+                }
+            }
+
+        if (check) {
+            System.out.print("Ticket doesn't exist. Try again! Possible IDs are ");
+            for (Ticket t : tickets){
+                System.out.print(t.getId()+ " ");
+            }
+            System.out.println();
+        }
+    }
+        System.out.print("Quantity: ");
+        int quantity;
+        while(true)
+    {
+        try
+        {
+            quantity = Integer.parseInt(reader.nextLine());
+            break;
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("Expecting an integer value. Try again!");
+            System.out.print("Quantity: ");
+        }
+    }
+        ordertickets.add(new OrderTicket(id, quantity, id, ticketid));
+        orderticketRepository.addOrderTicket(id, quantity, id, ticketid);
+
+        try
+        {
+            auditService.logAction("add orderticket");
         }
         catch (IOException e)
         {

@@ -6,7 +6,6 @@ public class Venue extends GenericEntity {
     private String name;
     private String type;
     private int capacity;
-
     private int addressid;
 
     public Venue() {

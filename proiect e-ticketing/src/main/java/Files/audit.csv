@@ -1,5 +1,4 @@
-configure tables,2023-05-29 00:37:49
-add address,2023-05-29 00:37:57
-print addresses,2023-05-29 00:38:02
-prints customers,2023-05-29 00:38:36
-close connection with database,2023-05-29 00:39:20
+configure tables,2023-05-29 14:49:02
+load data,2023-05-29 14:49:02
+add address,2023-05-29 14:49:20
+close connection with database,2023-05-29 14:49:21
